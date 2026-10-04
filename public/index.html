@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>rtx webterminal</title>
+  <!-- fully offline: css served locally by Bun, no CDN -->
+  <link rel="stylesheet" href="/xterm.css" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; background: #0b0e14; color: #e6e6e6;
+      font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace; }
+    #bar { display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+      background: #11161f; border-bottom: 1px solid #1f2937; }
+    #bar .title { font-weight: 700; letter-spacing: .3px; }
+    #bar .spacer { flex: 1; }
+    #bar button { background: #1f2937; color: #e6e6e6; border: 1px solid #374151;
+      border-radius: 6px; padding: 5px 10px; cursor: pointer; font: inherit; font-size: 13px; }
+    #bar button:hover { background: #374151; }
+    #status { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #9ca3af; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .dot.on { background: #22c55e; } .dot.off { background: #ef4444; }
+    #wrap { height: calc(100% - 45px); padding: 8px; }
+    #terminal { height: 100%; }
+    .hint { font-size: 12px; color: #6b7280; }
+  </style>
+</head>
+<body>
+  <div id="bar">
+    <span class="title">rtx webterminal</span>
+    <span id="status"><span id="status-dot" class="dot off"></span><span id="status-text">connecting…</span></span>
+    <span class="spacer"></span>
+    <span class="hint">bun + typescript · offline xterm</span>
+    <button id="btn-fit">fit</button>
+    <button id="btn-clear">clear</button>
+    <button id="btn-reconnect">reconnect</button>
+  </div>
+  <div id="wrap"><div id="terminal"></div></div>
+  <!-- bundled locally with `bun run build:client`, no CDN -->
+  <script type="module" src="/client.js"></script>
+</body>
+</html>
